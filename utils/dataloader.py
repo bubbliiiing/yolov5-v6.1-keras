@@ -69,7 +69,7 @@ class YoloDatasets(keras.utils.Sequence):
     def rand(self, a=0, b=1):
         return np.random.rand()*(b-a) + a
 
-    def get_random_data(self, annotation_line, input_shape, max_boxes=100, jitter=.3, hue=.1, sat=0.7, val=0.4, random=True):
+    def get_random_data(self, annotation_line, input_shape, max_boxes=500, jitter=.3, hue=.1, sat=0.7, val=0.4, random=True):
         line    = annotation_line.split()
         #------------------------------#
         #   读取图像并转换成RGB图像
@@ -236,7 +236,7 @@ class YoloDatasets(keras.utils.Sequence):
                 merge_bbox.append(tmp_box)
         return merge_bbox
 
-    def get_random_data_with_Mosaic(self, annotation_line, input_shape, max_boxes=100, jitter=0.3, hue=.1, sat=0.7, val=0.4):
+    def get_random_data_with_Mosaic(self, annotation_line, input_shape, max_boxes=500, jitter=0.3, hue=.1, sat=0.7, val=0.4):
         h, w = input_shape
         min_offset_x = self.rand(0.3, 0.7)
         min_offset_y = self.rand(0.3, 0.7)
@@ -374,30 +374,8 @@ class YoloDatasets(keras.utils.Sequence):
             box_data[:len(new_boxes)] = new_boxes
         return new_image, box_data
 
-    def get_random_data_with_MixUp(self, image_1, box_1, image_2, box_2, max_boxes=100):
+    def get_random_data_with_MixUp(self, image_1, box_1, image_2, box_2, max_boxes=500):
         new_image = np.array(image_1, np.float32) * 0.5 + np.array(image_2, np.float32) * 0.5
-        
-        from PIL import Image, ImageDraw
-
-        image_1 = Image.fromarray(image_1.astype(np.uint8))
-        for j in range(len(box_1)):
-            thickness = 3
-            left, top, right, bottom  = box_1[j][0:4]
-            draw = ImageDraw.Draw(image_1)
-            for i in range(thickness):
-                draw.rectangle([left + i, top + i, right - i, bottom - i],outline=(255, 255, 255))
-        image_1 = np.array(image_1, np.uint8)
-        cv2.imshow("234", image_1)
-        
-        image_2 = Image.fromarray(image_2.astype(np.uint8))
-        for j in range(len(box_2)):
-            thickness = 3
-            left, top, right, bottom  = box_2[j][0:4]
-            draw = ImageDraw.Draw(image_2)
-            for i in range(thickness):
-                draw.rectangle([left + i, top + i, right - i, bottom - i],outline=(255, 255, 255))
-        image_2 = np.array(image_2, np.uint8)
-        cv2.imshow("345", image_2)
         
         box_1_wh    = box_1[:, 2:4] - box_1[:, 0:2]
         box_1_valid = box_1_wh[:, 0] > 0
@@ -413,20 +391,6 @@ class YoloDatasets(keras.utils.Sequence):
         if len(new_boxes)>0:
             if len(new_boxes)>max_boxes: new_boxes = new_boxes[:max_boxes]
             box_data[:len(new_boxes)] = new_boxes
-                    
-        from PIL import Image, ImageDraw
-
-        new_image = Image.fromarray(new_image.astype(np.uint8))
-        for j in range(len(box_data)):
-            thickness = 3
-            left, top, right, bottom  = box_data[j][0:4]
-            draw = ImageDraw.Draw(new_image)
-            for i in range(thickness):
-                draw.rectangle([left + i, top + i, right - i, bottom - i],outline=(255, 255, 255))
-        new_image = np.array(new_image, np.uint8)
-        cv2.imshow("123", new_image)
-        print(box_data)
-        cv2.waitKey(0)
         return new_image, box_data
 
     def get_near_points(self, x, y, i, j):
