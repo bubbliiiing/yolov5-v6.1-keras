@@ -30,11 +30,11 @@ YoloX | https://github.com/bubbliiiing/yolox-keras
 ## 性能情况
 | 训练数据集 | 权值文件名称 | 测试数据集 | 输入图片大小 | mAP 0.5:0.95 | mAP 0.5 |
 | :-----: | :-----: | :------: | :------: | :------: | :-----: |
-| COCO-Train2017 | [yolov5_n.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_n_v6.1.h5) | COCO-Val2017 | 640x640 | 35.6 | 53.9
-| COCO-Train2017 | [yolov5_s.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_s_v6.1.h5) | COCO-Val2017 | 640x640 | 35.6 | 53.9
-| COCO-Train2017 | [yolov5_m.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_m_v6.1.h5) | COCO-Val2017 | 640x640 | 43.9 | 62.6 
-| COCO-Train2017 | [yolov5_l.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_l_v6.1.h5) | COCO-Val2017 | 640x640 | 47.4 | 66.2 
-| COCO-Train2017 | [yolov5_x.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_x_v6.1.h5) | COCO-Val2017 | 640x640 | 49.4 | 67.9 
+| COCO-Train2017 | [yolov5_n_v6.1.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_n_v6.1.h5) | COCO-Val2017 | 640x640 | 28.0 | 45.7
+| COCO-Train2017 | [yolov5_s_v6.1.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_s_v6.1.h5) | COCO-Val2017 | 640x640 | 37.5 | 56.8
+| COCO-Train2017 | [yolov5_m_v6.1.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_m_v6.1.h5) | COCO-Val2017 | 640x640 | 45.4 | 64.1
+| COCO-Train2017 | [yolov5_l_v6.1.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_l_v6.1.h5) | COCO-Val2017 | 640x640 | 49.0 | 67.3
+| COCO-Train2017 | [yolov5_x_v6.1.h5](https://github.com/bubbliiiing/yolov5-v6.1-keras/releases/download/v1.0/yolov5_x_v6.1.h5) | COCO-Val2017 | 640x640 | 50.7 | 68.9
 
 ## 所需环境
 keras==2.1.5   
@@ -42,8 +42,8 @@ tensorflow-gpu==1.13.2
 
 ## 文件下载
 训练所需的权值可在百度网盘中下载。  
-链接: https://pan.baidu.com/s/18DufVEkngOe-aoA30obLEw   
-提取码: disz   
+链接: https://pan.baidu.com/s/1GOvmVKp9YVaKJeEO773qAQ      
+提取码: 7kwm     
 
 VOC数据集下载地址如下，里面已经包括了训练集、测试集、验证集（与测试集一样），无需再次划分：  
 链接: https://pan.baidu.com/s/19Mw2u_df_nBzsC2lg20fQA    
