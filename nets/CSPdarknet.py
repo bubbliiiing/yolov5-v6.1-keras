@@ -1,12 +1,10 @@
 from functools import wraps
 
-import tensorflow as tf
 from keras import backend as K
 from keras.initializers import random_normal
 from keras.layers import (Add, BatchNormalization, Concatenate, Conv2D, Layer,
                           MaxPooling2D, ZeroPadding2D)
 from keras.layers.normalization import BatchNormalization
-from keras.regularizers import l2
 from utils.utils import compose
 
 
@@ -130,7 +128,7 @@ def darknet_body(x, base_channels, base_depth):
     feat2 = x
     
     # 40, 40, 512 => 20, 20, 1024
-    x = resblock_body(x, base_channels * 16, base_depth, shortcut=False, last=True, name = 'backbone.dark5')
+    x = resblock_body(x, base_channels * 16, base_depth, last=True, name = 'backbone.dark5')
     feat3 = x
     return feat1, feat2, feat3
 
